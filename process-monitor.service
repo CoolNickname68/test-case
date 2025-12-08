@@ -1,0 +1,21 @@
+[Unit]
+Description=Process Test Monitor
+After=network.target
+Wants=process-monitor.timer
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/process-monitor.sh
+User=root
+Group=root
+StandardOutput=journal
+StandardError=journal
+
+# Защита процессов
+ProtectSystem=strict
+ReadWritePaths=/var/log /var/run
+PrivateTmp=true
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target

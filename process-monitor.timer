@@ -1,0 +1,14 @@
+[Unit]
+Description=Run process monitor every minute
+Requires=process-monitor.service
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=1min
+Unit=process-monitor.service
+
+# Гарантия однократного выполнения
+AccuracySec=1s
+
+[Install]
+WantedBy=timers.target
